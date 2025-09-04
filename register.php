@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // encript
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($sql);
@@ -33,9 +33,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 <body>
     <h2>Register</h2>
     <form method="post">
-        User: <input type="text" name="username" required><br>
-        Email: <input type="email" name="email" required><br>
-        Password: <input type="password" name="password" required><br>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
         <button type="submit">Register</button>
     </form>
 </body>

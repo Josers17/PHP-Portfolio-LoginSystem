@@ -13,21 +13,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if ($row = $result->fetch_assoc()) {
-        if (password_verify($password, $row['password'])) {
+    if ($row = $result->fetch_assoc()) 
+    {
+        if (password_verify($password, $row['password'])) 
+        {
             $_SESSION['username'] = $row['username'];
             header("Location: welcome.php");
             exit();
-        } else {
-            echo "Contraseña incorrecta";
+        } 
+        else 
+        {
+            echo "Invalid password";
         }
-    } else {
-        echo "Usuario no encontrado";
+    } 
+    else 
+    {
+        echo "User not found";
     }
 
     $stmt->close();
     $conn->close();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -38,9 +45,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 <body>
     <h2>Login</h2>
     <form method="post">
-        Email: <input type="email" name="email" required><br>
-        Contraseña: <input type="password" name="password" required><br>
-        <button type="submit">Ingresar</button>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <button type="submit">Login</button>
     </form>
 </body>
 </html>
